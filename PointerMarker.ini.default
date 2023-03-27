@@ -1,0 +1,16 @@
+[Marker]
+Size = 80
+Color = FF0000
+Transparent = 128
+FadeOutDelay = 0.5
+FadeOutDuration = 0.5
+
+[TriggerMonitorEdge]
+Enable = true
+
+[TriggerMonitorChange]
+Enable = true
+
+[TriggerWakeup]
+Enable = true
+SleepTime = 10
