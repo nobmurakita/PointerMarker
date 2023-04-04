@@ -5,6 +5,9 @@
 SetWinDelay(0)
 CoordMode("Mouse", "Screen")
 
+; https://www.autohotkey.com/docs/v2/misc/DPIScaling.htm#Workarounds
+DllCall("SetThreadDpiAwarenessContext", "ptr", -3, "ptr")
+
 class PointerMarkerApp
 {
     ; 設定
@@ -52,9 +55,10 @@ class PointerMarkerApp
     Start()
     {
         ; マーカー作成
+        ; -DPIScale https://www.autohotkey.com/docs/v2/misc/DPIScaling.htm#Gui_DPI_Scaling
         ; +E0x02000000(WS_EX_COMPOSITED) +E0x00080000(WS_EX_LAYERED) ちらつき防止
         ; +E0x00000020(WS_EX_TRANSPARENT) 透過ウィンドウ
-        this.marker := Gui("+AlwaysOnTop +ToolWindow -Caption +E0x02000000 +E0x00080000 +E0x00000020")
+        this.marker := Gui("+AlwaysOnTop +ToolWindow -Caption -DPIScale +E0x02000000 +E0x00080000 +E0x00000020")
         this.marker.BackColor := this.cfg.color
         this.marker.Show(Format("W{1} H{2} HIDE", this.cfg.size, this.cfg.size))
         WinSetRegion(Format("0-0 W{1} H{2} E", this.cfg.size, this.cfg.size), this.marker)
